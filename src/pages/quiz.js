@@ -30,7 +30,7 @@ const Quiz = () => {
                 callback()
             }
         })
-        .catch((error) => {toast.error(error?.response?.data?.data)})
+        .catch((error) => {toast.error(error?.response?.data?.data?.error)})
     }
     const fetchRandomCountry = () => {
         axiosInstance.get(QUIZ_API_URL)
@@ -39,7 +39,7 @@ const Quiz = () => {
                 setCountryName(response.data.data.country_name)
             }
         })
-        .catch((error) => {toast.error(error?.response?.data?.data)})
+        .catch((error) => {toast.error(error?.response?.data?.data?.error)})
     }
   
    
