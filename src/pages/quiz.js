@@ -39,7 +39,13 @@ const Quiz = () => {
                 setCountryName(response.data.data.country_name)
             }
         })
-        .catch((error) => {toast.error(error?.response?.data?.data?.error)})
+        .catch((error) => {
+            if(error?.response?.status === 500){
+            toast.error('Internal Server Error. Please try again later.')
+            }else {
+            toast.error(error?.response?.data?.data?.error)
+            }
+        })
     }
   
    
