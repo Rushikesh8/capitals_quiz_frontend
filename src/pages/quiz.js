@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect,useRef} from "react";
 import axiosInstance from '../axios_instance';
 import toast from 'react-hot-toast';
 import {QUIZ_API_URL} from '../constants.js'
@@ -6,12 +6,14 @@ import {QUIZ_API_URL} from '../constants.js'
 const Quiz = () => {
     const [countryName, setCountryName] = useState('');
     const [capital, setCapital] = useState('');
+    const submitButtonRef = useRef(null)
 
     useEffect(() => {fetchRandomCountry()},[])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         guessCheck(()  => {
+            submitButtonRef.current.blur()
             setCapital('')
             fetchRandomCountry()
             
@@ -64,7 +66,7 @@ const Quiz = () => {
            
         </div>
         <div className="flex justify-center mb-8 mt-6">
-        <button type="submit" className="flex w-full justify-center rounded-md  border-transparent bg-cyan-500 py-2 px-4 text-sm  text-white shadow-sm hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 font-semibold">Check</button>
+        <button ref={submitButtonRef}type="submit" className="flex w-full justify-center rounded-md  border-transparent bg-cyan-500 py-2 px-4 text-sm  text-white shadow-sm hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 font-semibold">Check</button>
         </div>
         </form>
         </div>
